@@ -24,3 +24,10 @@ def test_canonical_bytes_preserves_binary_content(tmp_path: Path) -> None:
     binary_file.write_bytes(payload)
 
     assert MODULE.canonical_bytes(binary_file) == payload
+
+
+def test_manifest_paths_use_platform_independent_codepoint_order() -> None:
+    payload = MODULE._build_payload(generated_at="test")
+    paths = [item["path"] for item in payload["files"]]
+
+    assert paths == sorted(paths)

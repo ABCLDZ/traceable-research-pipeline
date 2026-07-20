@@ -84,7 +84,11 @@ def _build_payload(*, generated_at: str) -> dict[str, object]:
         and path.name != "PROJECT_MANIFEST.json"
     }
     files = []
-    for path in sorted(paths):
+    ordered_paths = sorted(
+        paths,
+        key=lambda path: path.relative_to(ROOT).as_posix(),
+    )
+    for path in ordered_paths:
         data = canonical_bytes(path)
         files.append(
             {
