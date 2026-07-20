@@ -1,0 +1,23 @@
+# Synthetic configuration template. Replace the URL and scope before ingestion.
+project_id: example_research
+entity:
+  name: Example Entity
+  aliases:
+    - Example Organization
+research_question: What changed in the selected metric during the stated period?
+time_range:
+  start: "2025-01-01"
+  end: "2026-12-31"
+source_policy:
+  allowed_domains:
+    - example.com
+  blocked_domains: []
+  source_types:
+    - quarterly_report
+  priority:
+    - primary_sources
+seed_urls:
+  - https://example.com/replace-with-a-real-source
+analysis_modules:
+  - metric_change
+  - limitations

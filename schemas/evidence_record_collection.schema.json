@@ -1,0 +1,407 @@
+{
+  "$defs": {
+    "EvidenceRecord": {
+      "description": "经过聚合和人工准入、允许进入研究上下文的正式证据。",
+      "properties": {
+        "evidence_record_id": {
+          "title": "Evidence Record Id",
+          "type": "string"
+        },
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "research_question": {
+          "title": "Research Question",
+          "type": "string"
+        },
+        "card_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Card Ids",
+          "type": "array"
+        },
+        "document_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Document Ids",
+          "type": "array"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "evidence_type": {
+          "$ref": "#/$defs/EvidenceType"
+        },
+        "original_excerpts": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Original Excerpts",
+          "type": "array"
+        },
+        "source_references": {
+          "items": {
+            "$ref": "#/$defs/EvidenceSourceReference"
+          },
+          "title": "Source References",
+          "type": "array"
+        },
+        "numeric_values": {
+          "items": {
+            "$ref": "#/$defs/NumericValue"
+          },
+          "title": "Numeric Values",
+          "type": "array"
+        },
+        "time_range": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Time Range"
+        },
+        "geography": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Geography"
+        },
+        "industry_scope": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Industry Scope"
+        },
+        "applicability": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Applicability"
+        },
+        "prohibited_extrapolations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Prohibited Extrapolations",
+          "type": "array"
+        },
+        "reviewer": {
+          "title": "Reviewer",
+          "type": "string"
+        },
+        "reviewed_at": {
+          "format": "date-time",
+          "title": "Reviewed At",
+          "type": "string"
+        },
+        "review_notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Review Notes"
+        },
+        "status": {
+          "$ref": "#/$defs/EvidenceRecordStatus",
+          "default": "admitted"
+        },
+        "evidence_record_schema_version": {
+          "default": "0.2.0",
+          "title": "Evidence Record Schema Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence_record_id",
+        "project_id",
+        "research_question",
+        "card_ids",
+        "document_ids",
+        "title",
+        "summary",
+        "evidence_type",
+        "original_excerpts",
+        "source_references",
+        "reviewer",
+        "reviewed_at"
+      ],
+      "title": "EvidenceRecord",
+      "type": "object"
+    },
+    "EvidenceRecordStatus": {
+      "enum": [
+        "admitted",
+        "rejected",
+        "superseded"
+      ],
+      "title": "EvidenceRecordStatus",
+      "type": "string"
+    },
+    "EvidenceSourceReference": {
+      "description": "Source-level provenance retained with every admitted evidence record.",
+      "properties": {
+        "card_id": {
+          "title": "Card Id",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "source_url": {
+          "title": "Source Url",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "publisher": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Publisher"
+        },
+        "published_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Published At"
+        },
+        "content_hash": {
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "page_number": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page Number"
+        },
+        "section": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Section"
+        },
+        "original_excerpt": {
+          "title": "Original Excerpt",
+          "type": "string"
+        }
+      },
+      "required": [
+        "card_id",
+        "document_id",
+        "source_url",
+        "title",
+        "content_hash",
+        "original_excerpt"
+      ],
+      "title": "EvidenceSourceReference",
+      "type": "object"
+    },
+    "EvidenceType": {
+      "enum": [
+        "quantitative",
+        "qualitative",
+        "numeric_table",
+        "forecast",
+        "policy_target",
+        "management_statement",
+        "third_party_claim"
+      ],
+      "title": "EvidenceType",
+      "type": "string"
+    },
+    "NumericValue": {
+      "properties": {
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Currency"
+        },
+        "time_range": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Time Range"
+        },
+        "metric_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Metric Name"
+        },
+        "scope": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Scope"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "NumericValue",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "schema_version": {
+      "default": "0.2.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "research_question": {
+      "title": "Research Question",
+      "type": "string"
+    },
+    "reviewer": {
+      "title": "Reviewer",
+      "type": "string"
+    },
+    "admitted_at": {
+      "format": "date-time",
+      "title": "Admitted At",
+      "type": "string"
+    },
+    "source_review_pack_sha256": {
+      "title": "Source Review Pack Sha256",
+      "type": "string"
+    },
+    "records": {
+      "items": {
+        "$ref": "#/$defs/EvidenceRecord"
+      },
+      "title": "Records",
+      "type": "array"
+    }
+  },
+  "required": [
+    "project_id",
+    "research_question",
+    "reviewer",
+    "admitted_at",
+    "source_review_pack_sha256",
+    "records"
+  ],
+  "title": "EvidenceRecordCollection",
+  "type": "object"
+}

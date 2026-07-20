@@ -1,0 +1,113 @@
+{
+  "$defs": {
+    "ReleaseFileEntry": {
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "sha256": {
+          "title": "Sha256",
+          "type": "string"
+        },
+        "bytes": {
+          "title": "Bytes",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "bytes"
+      ],
+      "title": "ReleaseFileEntry",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "schema_version": {
+      "default": "0.2.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "release_status": {
+      "default": "frozen",
+      "title": "Release Status",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "research_question": {
+      "title": "Research Question",
+      "type": "string"
+    },
+    "as_of_date": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "As Of Date"
+    },
+    "frozen_at": {
+      "title": "Frozen At",
+      "type": "string"
+    },
+    "human_final_review": {
+      "additionalProperties": true,
+      "title": "Human Final Review",
+      "type": "object"
+    },
+    "approved_evidence_record_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Approved Evidence Record Ids",
+      "type": "array"
+    },
+    "unresolved_questions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Unresolved Questions",
+      "type": "array"
+    },
+    "code": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Code",
+      "type": "object"
+    },
+    "files": {
+      "items": {
+        "$ref": "#/$defs/ReleaseFileEntry"
+      },
+      "title": "Files",
+      "type": "array"
+    },
+    "statement": {
+      "title": "Statement",
+      "type": "string"
+    }
+  },
+  "required": [
+    "project_id",
+    "research_question",
+    "frozen_at",
+    "human_final_review",
+    "approved_evidence_record_ids",
+    "unresolved_questions",
+    "code",
+    "files",
+    "statement"
+  ],
+  "title": "ReleaseManifest",
+  "type": "object"
+}

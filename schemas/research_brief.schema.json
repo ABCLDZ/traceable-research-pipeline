@@ -1,0 +1,92 @@
+{
+  "description": "轻量研究状态；不复制报告中的逐条 Claim。",
+  "properties": {
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "research_question": {
+      "title": "Research Question",
+      "type": "string"
+    },
+    "scope": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Scope",
+      "type": "array"
+    },
+    "exclusions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Exclusions",
+      "type": "array"
+    },
+    "as_of_date": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "As Of Date"
+    },
+    "core_hypotheses": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Core Hypotheses",
+      "type": "array"
+    },
+    "counterevidence": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Counterevidence",
+      "type": "array"
+    },
+    "open_questions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Open Questions",
+      "type": "array"
+    },
+    "output_requirements": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Output Requirements",
+      "type": "array"
+    },
+    "major_revision_notes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Major Revision Notes",
+      "type": "array"
+    },
+    "approved_evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Approved Evidence Ids",
+      "type": "array"
+    },
+    "brief_schema_version": {
+      "default": "0.1.0",
+      "title": "Brief Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "project_id",
+    "research_question"
+  ],
+  "title": "ResearchBrief",
+  "type": "object"
+}

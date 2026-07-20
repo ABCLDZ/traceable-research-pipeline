@@ -1,0 +1,28 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.pytest_tmp/
+.tmp/
+.demo_run/
+.cli_smoke/
+pytest-cache-files-*/
+.venv/
+.env*
+!.env.example
+.agent-skill-backups/
+dist/
+build/
+.coverage
+coverage.xml
+htmlcov/
+
+# Runtime material can contain copyrighted or confidential source text.
+data/
+
+# Local release candidates are not source code.
+releases/
+
+# Local configuration derived from the public template.
+configs/*.local.yaml
+configs/my-project.yaml

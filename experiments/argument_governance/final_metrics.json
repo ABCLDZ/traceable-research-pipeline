@@ -1,0 +1,95 @@
+{
+  "schema_version": "0.1.0",
+  "trial_id": "longitudinal_handoff_trial_03",
+  "status": "final_adjudicated_unblinded",
+  "candidate_mapping": {
+    "CAND-88F61374": "CASE1-A",
+    "CAND-E5F57C29": "CASE1-B",
+    "CAND-625BC649": "CASE2-A",
+    "CAND-1110526F": "CASE2-B"
+  },
+  "case_results": {
+    "CASE1": {
+      "A": {"required_modify_correct": 10, "required_modify_total": 11, "impact_recall": 0.909091, "p1": 0, "p2": 1, "quality": 95},
+      "B": {"required_modify_correct": 10, "required_modify_total": 11, "impact_recall": 0.909091, "p1": 0, "p2": 1, "quality": 95}
+    },
+    "CASE2": {
+      "A": {"required_modify_correct": 10, "required_modify_total": 10, "impact_recall": 1.0, "p1": 0, "p2": 0, "quality": 100},
+      "B": {"required_modify_correct": 6, "required_modify_total": 10, "impact_recall": 0.6, "p1": 3, "p2": 1, "quality": 78}
+    }
+  },
+  "arm_results": {
+    "A": {
+      "required_modify_correct": 20,
+      "required_modify_total": 21,
+      "impact_recall": 0.952381,
+      "misses": 1,
+      "erroneous_modification_rate": 0.0,
+      "necessary_retention_rate": 1.0,
+      "history_explanation_accuracy": 1.0,
+      "p0": 0,
+      "p1": 0,
+      "p2": 1,
+      "mean_quality": 97.5,
+      "model_calls": 9
+    },
+    "B": {
+      "required_modify_correct": 16,
+      "required_modify_total": 21,
+      "impact_recall": 0.761905,
+      "misses": 5,
+      "erroneous_modification_rate": 0.0,
+      "necessary_retention_rate": 1.0,
+      "history_explanation_accuracy": 1.0,
+      "p0": 0,
+      "p1": 3,
+      "p2": 2,
+      "mean_quality": 86.5,
+      "model_calls": 13
+    }
+  },
+  "primary_endpoints": {
+    "impact_recall": {
+      "result": "fail",
+      "B_minus_A_percentage_points": -19.0476,
+      "A_misses": 1,
+      "B_misses": 5,
+      "interpretation": "B was materially worse; it did not meet either preregistered improvement condition."
+    },
+    "erroneous_modification_rate": {
+      "result": "floor_tie_not_positive_evidence",
+      "A": 0.0,
+      "B": 0.0,
+      "interpretation": "Both arms made no scored wrong edits; omissions are penalized through recall, so this tie is not evidence of incremental value."
+    },
+    "handoff_rework_minutes": {
+      "result": "unavailable",
+      "reason": "No real post-score rework timing was collected; it was not estimated."
+    }
+  },
+  "guardrails": {
+    "B_uncorrected_p0_p1": "fail; three P1",
+    "B_case_quality_deficit_max_3": "fail; CASE2 deficit 22",
+    "B_history_explanation_min_0_9": "pass; 1.0",
+    "B_necessary_retention_min_0_95": "pass; 1.0",
+    "designer_oral_explanations_zero": "pass",
+    "B_total_human_active_time_not_above_A": "unavailable due incomplete telemetry",
+    "workflow_caused_p0_p1_zero": "not established; B argument state retained three stale P1 downstream targets"
+  },
+  "cost_and_telemetry": {
+    "token_counts": "unavailable",
+    "model_wall_time": "unavailable",
+    "rework_minutes": "unavailable",
+    "human_active_time": "not comparable due inconsistent/incomplete event capture",
+    "model_calls_A": 9,
+    "model_calls_B": 13,
+    "model_call_increase_B_vs_A": 0.444444
+  },
+  "investment_decision": {
+    "classification": "stop_expansion",
+    "continue_investment": false,
+    "high_risk_production_template": false,
+    "retain_as": "internal audit framework, frozen code/method archive, and portfolio case study",
+    "reason": "The strict workflow tied the strong baseline in CASE1 and was materially worse in CASE2 on the core impact-propagation endpoint, with three uncorrected P1 downstream omissions and no measurable efficiency advantage."
+  }
+}

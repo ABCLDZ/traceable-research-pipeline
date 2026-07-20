@@ -1,0 +1,24 @@
+# 美国 AI 数据中心电力风险 - 采集测试配置（精简版，仅含可访问URL）
+
+project_id: us_ai_power_trial
+entity:
+  name: US AI Data Centers
+  aliases:
+    - US AI数据中心
+    - Data Center Power
+research_question: 2024—2030年美国AI相关数据中心用电增长是否构成全国性电力短缺风险
+time_range:
+  start: "2020-01-01"
+  end: "2030-12-31"
+source_policy:
+  allowed_domains: []
+  blocked_domains: []
+  source_types: []
+  priority: []
+seed_urls:
+  - https://www.eia.gov/todayinenergy/detail.php?id=67344
+  - https://www.nerc.com/globalassets/our-work/assessments/nerc_ltra_2025.pdf
+  - https://www.energy.gov/sites/default/files/2025-07/DOE%20Final%20EO%20Report%20%28FINAL%20JULY%207%29_0.pdf
+analysis_modules:
+  - power_demand
+  - regional_risk

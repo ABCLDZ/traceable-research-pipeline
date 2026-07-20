@@ -1,0 +1,398 @@
+{
+  "$defs": {
+    "EvidenceType": {
+      "enum": [
+        "quantitative",
+        "qualitative",
+        "numeric_table",
+        "forecast",
+        "policy_target",
+        "management_statement",
+        "third_party_claim"
+      ],
+      "title": "EvidenceType",
+      "type": "string"
+    },
+    "ExcerptVerification": {
+      "properties": {
+        "exact_match": {
+          "title": "Exact Match",
+          "type": "boolean"
+        },
+        "normalized_match": {
+          "default": false,
+          "title": "Normalized Match",
+          "type": "boolean"
+        },
+        "fuzzy_match": {
+          "default": false,
+          "title": "Fuzzy Match",
+          "type": "boolean"
+        },
+        "fuzzy_score": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fuzzy Score"
+        },
+        "verified_at": {
+          "format": "date-time",
+          "title": "Verified At",
+          "type": "string"
+        },
+        "verification_method": {
+          "default": "auto",
+          "title": "Verification Method",
+          "type": "string"
+        }
+      },
+      "required": [
+        "exact_match"
+      ],
+      "title": "ExcerptVerification",
+      "type": "object"
+    },
+    "NumericValue": {
+      "properties": {
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Currency"
+        },
+        "time_range": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Time Range"
+        },
+        "metric_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Metric Name"
+        },
+        "scope": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Scope"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "NumericValue",
+      "type": "object"
+    },
+    "RecordLevel": {
+      "description": "证据层级标记：区分原子事实与研究证据。",
+      "enum": [
+        "atomic_fact",
+        "research_evidence",
+        "management_statement",
+        "forecast"
+      ],
+      "title": "RecordLevel",
+      "type": "string"
+    },
+    "SourceTier": {
+      "enum": [
+        "tier1",
+        "tier2",
+        "tier3",
+        "tier4"
+      ],
+      "title": "SourceTier",
+      "type": "string"
+    },
+    "TopicEnum": {
+      "description": "受控 topic 枚举，模型只能选这些值。",
+      "enum": [
+        "revenue_structure",
+        "delivery_and_asp",
+        "gross_margin",
+        "services_and_other",
+        "technology_monetization",
+        "future_growth_drivers",
+        "risks_and_counterevidence",
+        "corporate_governance",
+        "balance_sheet",
+        "cash_flow",
+        "operating_metrics",
+        "other"
+      ],
+      "title": "TopicEnum",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "evidence_id": {
+      "title": "Evidence Id",
+      "type": "string"
+    },
+    "document_id": {
+      "title": "Document Id",
+      "type": "string"
+    },
+    "chunk_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Chunk Id"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "topics": {
+      "items": {
+        "$ref": "#/$defs/TopicEnum"
+      },
+      "title": "Topics",
+      "type": "array"
+    },
+    "topic": {
+      "default": "general",
+      "title": "Topic",
+      "type": "string"
+    },
+    "record_level": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RecordLevel"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "evidence_type": {
+      "$ref": "#/$defs/EvidenceType"
+    },
+    "claim": {
+      "title": "Claim",
+      "type": "string"
+    },
+    "original_excerpt": {
+      "title": "Original Excerpt",
+      "type": "string"
+    },
+    "page_number": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Page Number"
+    },
+    "section": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Section"
+    },
+    "source_url": {
+      "title": "Source Url",
+      "type": "string"
+    },
+    "publisher": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Publisher"
+    },
+    "published_at": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Published At"
+    },
+    "source_tier": {
+      "$ref": "#/$defs/SourceTier"
+    },
+    "selected_sentence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Selected Sentence Ids",
+      "type": "array"
+    },
+    "extraction_method": {
+      "default": "auto",
+      "title": "Extraction Method",
+      "type": "string"
+    },
+    "confidence": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Confidence"
+    },
+    "numeric_values": {
+      "items": {
+        "$ref": "#/$defs/NumericValue"
+      },
+      "title": "Numeric Values",
+      "type": "array"
+    },
+    "tags": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Tags",
+      "type": "array"
+    },
+    "status": {
+      "default": "unverified",
+      "title": "Status",
+      "type": "string"
+    },
+    "verified_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Verified At"
+    },
+    "verified_by": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Verified By"
+    },
+    "excerpt_verification": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ExcerptVerification"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "evidence_schema_version": {
+      "default": "0.3.0",
+      "title": "Evidence Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "evidence_id",
+    "document_id",
+    "project_id",
+    "evidence_type",
+    "claim",
+    "original_excerpt",
+    "source_url",
+    "source_tier"
+  ],
+  "title": "EvidenceCard",
+  "type": "object"
+}

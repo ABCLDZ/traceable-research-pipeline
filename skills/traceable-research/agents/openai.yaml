@@ -1,0 +1,7 @@
+interface:
+  display_name: "Traceable Research"
+  short_description: "Build traceable, human-reviewed evidence packs"
+  default_prompt: "Use $traceable-research to build a traceable evidence pack for this research question."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "traceable-research-pipeline"
+version = "0.1.0"
+description = "Traceable evidence intake, admission, context compilation, and release freezing for expert-led research."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [
+  { name = "ABCLDZ" },
+]
+keywords = ["agent-skills", "research", "evidence", "provenance", "codex", "claude-code"]
+dependencies = [
+  "beautifulsoup4>=4.12",
+  "httpx>=0.28",
+  "lxml>=5.0",
+  "openai>=1.0",
+  "pdfplumber>=0.11",
+  "pydantic>=2.0",
+  "PyYAML>=6.0",
+  "trafilatura>=2.0",
+  "typer>=0.12",
+]
+
+[project.optional-dependencies]
+dev = ["build>=1.2", "pytest>=8.0"]
+
+[project.urls]
+Homepage = "https://github.com/ABCLDZ/traceable-research-pipeline"
+Repository = "https://github.com/ABCLDZ/traceable-research-pipeline"
+Issues = "https://github.com/ABCLDZ/traceable-research-pipeline/issues"
+
+[project.scripts]
+research-flow = "research_pipeline.cli:app"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.package-data]
+research_pipeline = ["resources/*.md"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

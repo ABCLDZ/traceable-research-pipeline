@@ -1,0 +1,364 @@
+{
+  "$defs": {
+    "FetchRecord": {
+      "properties": {
+        "http_status": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Http Status"
+        },
+        "final_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Final Url"
+        },
+        "fetched_at": {
+          "format": "date-time",
+          "title": "Fetched At",
+          "type": "string"
+        },
+        "fetch_duration_ms": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fetch Duration Ms"
+        },
+        "error_message": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Error Message"
+        },
+        "user_agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "User Agent"
+        },
+        "used_browser": {
+          "default": false,
+          "title": "Used Browser",
+          "type": "boolean"
+        }
+      },
+      "title": "FetchRecord",
+      "type": "object"
+    },
+    "FetchStatus": {
+      "enum": [
+        "pending",
+        "success",
+        "partial",
+        "failed",
+        "skipped"
+      ],
+      "title": "FetchStatus",
+      "type": "string"
+    },
+    "MimeType": {
+      "enum": [
+        "text/html",
+        "application/pdf",
+        "text/plain",
+        "text/markdown",
+        "application/json",
+        "unknown"
+      ],
+      "title": "MimeType",
+      "type": "string"
+    },
+    "ParseQuality": {
+      "enum": [
+        "unknown",
+        "usable",
+        "degraded",
+        "failed"
+      ],
+      "title": "ParseQuality",
+      "type": "string"
+    },
+    "ParseStatus": {
+      "enum": [
+        "success",
+        "partial",
+        "failed",
+        "pending"
+      ],
+      "title": "ParseStatus",
+      "type": "string"
+    },
+    "SourceTier": {
+      "enum": [
+        "tier1",
+        "tier2",
+        "tier3",
+        "tier4"
+      ],
+      "title": "SourceTier",
+      "type": "string"
+    },
+    "SourceType": {
+      "enum": [
+        "annual_report",
+        "quarterly_report",
+        "earnings_release",
+        "investor_presentation",
+        "exchange_filing",
+        "official_news",
+        "product_page",
+        "government_report",
+        "regulatory_filing",
+        "industry_report",
+        "academic_paper",
+        "news_article",
+        "blog_post",
+        "other"
+      ],
+      "title": "SourceType",
+      "type": "string"
+    },
+    "TablePreservation": {
+      "enum": [
+        "not_applicable",
+        "unknown",
+        "partial",
+        "preserved"
+      ],
+      "title": "TablePreservation",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "document_id": {
+      "title": "Document Id",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "entity_name": {
+      "title": "Entity Name",
+      "type": "string"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "publisher": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Publisher"
+    },
+    "author": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Author"
+    },
+    "published_at": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Published At"
+    },
+    "retrieved_at": {
+      "format": "date-time",
+      "title": "Retrieved At",
+      "type": "string"
+    },
+    "source_url": {
+      "title": "Source Url",
+      "type": "string"
+    },
+    "final_url": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Final Url"
+    },
+    "source_type": {
+      "$ref": "#/$defs/SourceType"
+    },
+    "source_tier": {
+      "$ref": "#/$defs/SourceTier"
+    },
+    "mime_type": {
+      "$ref": "#/$defs/MimeType"
+    },
+    "language": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Language"
+    },
+    "raw_path": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Raw Path"
+    },
+    "parsed_path": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Parsed Path"
+    },
+    "content_hash": {
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "text": {
+      "title": "Text",
+      "type": "string"
+    },
+    "text_length": {
+      "default": 0,
+      "title": "Text Length",
+      "type": "integer"
+    },
+    "fetch_record": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/FetchRecord"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "fetch_status": {
+      "$ref": "#/$defs/FetchStatus",
+      "default": "pending"
+    },
+    "parse_status": {
+      "$ref": "#/$defs/ParseStatus",
+      "default": "pending"
+    },
+    "parse_quality": {
+      "$ref": "#/$defs/ParseQuality",
+      "default": "unknown"
+    },
+    "table_preservation": {
+      "$ref": "#/$defs/TablePreservation",
+      "default": "unknown"
+    },
+    "ocr_used": {
+      "default": false,
+      "title": "Ocr Used",
+      "type": "boolean"
+    },
+    "manual_review_required": {
+      "default": false,
+      "title": "Manual Review Required",
+      "type": "boolean"
+    },
+    "quality_signals": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Quality Signals",
+      "type": "array"
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "title": "Metadata",
+      "type": "object"
+    },
+    "document_schema_version": {
+      "default": "0.3.0",
+      "title": "Document Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "document_id",
+    "project_id",
+    "entity_name",
+    "title",
+    "source_url",
+    "source_type",
+    "source_tier",
+    "mime_type",
+    "content_hash",
+    "text"
+  ],
+  "title": "DocumentRecord",
+  "type": "object"
+}

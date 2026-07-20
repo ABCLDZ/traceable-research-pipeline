@@ -1,0 +1,124 @@
+{
+  "$defs": {
+    "ReleaseSourceEntry": {
+      "properties": {
+        "card_id": {
+          "title": "Card Id",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "source_url": {
+          "title": "Source Url",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "publisher": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Publisher"
+        },
+        "published_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Published At"
+        },
+        "content_hash": {
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "page_number": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page Number"
+        },
+        "section": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Section"
+        },
+        "original_excerpt": {
+          "title": "Original Excerpt",
+          "type": "string"
+        },
+        "evidence_record_id": {
+          "title": "Evidence Record Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "card_id",
+        "document_id",
+        "source_url",
+        "title",
+        "content_hash",
+        "original_excerpt",
+        "evidence_record_id"
+      ],
+      "title": "ReleaseSourceEntry",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "schema_version": {
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "research_question": {
+      "title": "Research Question",
+      "type": "string"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/ReleaseSourceEntry"
+      },
+      "title": "Sources",
+      "type": "array"
+    }
+  },
+  "required": [
+    "project_id",
+    "research_question",
+    "sources"
+  ],
+  "title": "ReleaseSourceIndex",
+  "type": "object"
+}
