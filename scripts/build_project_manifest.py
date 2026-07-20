@@ -36,8 +36,24 @@ INCLUDED_FILES = [
 ]
 
 
-def sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+BINARY_SUFFIXES = {
+    ".gif",
+    ".ico",
+    ".jpg",
+    ".jpeg",
+    ".pdf",
+    ".png",
+    ".webp",
+    ".zip",
+}
+
+
+def canonical_bytes(path: Path) -> bytes:
+    """Return bytes stable across Git's Windows/Linux text checkouts."""
+    data = path.read_bytes()
+    if path.suffix.lower() not in BINARY_SUFFIXES:
+        data = data.replace(b"\r\n", b"\n")
+    return data
 
 
 def count_tests() -> int:
@@ -67,14 +83,16 @@ def _build_payload(*, generated_at: str) -> dict[str, object]:
         and not any(part.endswith(".egg-info") for part in path.parts)
         and path.name != "PROJECT_MANIFEST.json"
     }
-    files = [
-        {
-            "path": path.relative_to(ROOT).as_posix(),
-            "sha256": sha256(path),
-            "bytes": path.stat().st_size,
-        }
-        for path in sorted(paths)
-    ]
+    files = []
+    for path in sorted(paths):
+        data = canonical_bytes(path)
+        files.append(
+            {
+                "path": path.relative_to(ROOT).as_posix(),
+                "sha256": hashlib.sha256(data).hexdigest(),
+                "bytes": len(data),
+            }
+        )
     tree = hashlib.sha256()
     for item in files:
         tree.update(item["path"].encode("utf-8"))
