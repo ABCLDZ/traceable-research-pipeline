@@ -1,4 +1,4 @@
-# 专业研究可追溯证据管线与AI工作流评估
+# 专业研究可追溯证据管线与AI工作流评估SKILLS
 
 Traceable Evidence Pipeline & AI Research Workflow Evaluation
 
